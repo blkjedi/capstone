@@ -19,18 +19,28 @@ export default function GetClub() {
     fetchProject(params.clubId);
     // set the new project in state
   }, [params.clubId]);
-  const handleClick= (e) => {
+
+  //get matches
+  const handleClick = (e) => {
     e.preventDefault();
+    const matchingClubs = data.filter((c) =>(parseInt(c.avgBest11) < (project.avgBest11)) );
+    console.log(matchingClubs);
+    setResult(matchingClubs)};
+  const handleEven = (e) => {
+    e.preventDefault();
+    const evenClubs = data.filter((c) =>(parseInt(c.avgBest11) >= (project.avgBest11)) );
+    console.log(evenClubs);
+    setResult(evenClubs);
 
-    if (params.avgBest11 < params.avgBest11 ){
-        <div key={params.avgBest11}>
-       <h2>{results}</h2>
-    </div>
-    }
+    // if (params.avgBest11 < params.avgBest11) {
+    //   <div key={params.avgBest11}>
+    //     <h2>{results}</h2>
+    //   </div>;
+    // }
 
-    //map over data return matching clubs 
+    //map over data return matching clubs
     //put new arry into results state show each club that matches range
-  }
+  };
 
   return (
     <div>
@@ -40,11 +50,18 @@ export default function GetClub() {
       <h2>{project.clubName}</h2>
       <h4>ClubID:{project.clubId}</h4>
       <h4>Rating:{project.avgBest11}</h4>
-      <button onClick={handleClick}>easy Match</button>
+      <button onClick={handleClick}>Easy Match</button>
+      <button onClick={handleEven}>Equal Match</button>
       {results && (
-        <div>
-          <h2>result</h2>
-        </div>
+       results.map((i) => (
+        <div key={i.clubId}>
+            <hr />
+            <h3>your opponent</h3>
+        <h2>{i.clubName}</h2>
+        <h4>ClubID:{i.clubId}</h4>
+        <h4>Rating:{i.avgBest11}</h4>
+      </div>
+       ) )
       )}
     </div>
   );
