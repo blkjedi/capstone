@@ -11,7 +11,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="homePage">
+    <div className="ml-3">
       <form className="searchBar" onSubmit={search}>
         <input
           type="search"

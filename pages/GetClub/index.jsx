@@ -43,23 +43,23 @@ export default function GetClub() {
   };
 
   return (
-    <div>
+    <div className="py-4 flex">
       <h1>club Details </h1>
       <Link to="/projects">back</Link>
 
-      <h2>{project.clubName}</h2>
+      <h2 className="text-sm font-medium text-gray-900">{project.clubName}</h2>
       <h4>ClubID:{project.clubId}</h4>
-      <h4>Rating:{project.avgBest11}</h4>
+      <h4 className="text-sm text-gray-500">Rating:{project.avgBest11}</h4>
       <button onClick={handleClick}>Easy Match</button>
       <button onClick={handleEven}>Equal Match</button>
       {results && (
        results.map((i) => (
-        <div key={i.clubId}>
+        <div className="ml-3 flex" key={i.clubId}>
             <hr />
             <h3>your opponent</h3>
-        <h2>{i.clubName}</h2>
+        <h2 className="text-sm font-medium text-gray-900">{i.clubName}</h2>
         <h4>ClubID:{i.clubId}</h4>
-        <h4>Rating:{i.avgBest11}</h4>
+        <h4 className="text-sm text-gray-500">Rating:{i.avgBest11}</h4>
       </div>
        ) )
       )}
